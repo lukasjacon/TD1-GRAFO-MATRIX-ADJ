@@ -6,6 +6,7 @@ public class Graph {
     private ArrayList<Nodes> nodes;
     private Matrix matrix;
 
+    // Esse é o grafo
     public Graph() {
         nodes = new ArrayList<>();
         matrix = new Matrix();
