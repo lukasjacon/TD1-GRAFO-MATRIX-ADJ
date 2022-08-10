@@ -1,7 +1,7 @@
 
 import java.util.ArrayList;
 
-public class Matrix {
+public class Matriz {
 
     private ArrayList<ArrayList<Double>> matriz;
     private int length;
@@ -10,21 +10,21 @@ public class Matrix {
     /**
      * Instantiates a matrix with length 1
      */
-    public Matrix() {
+    public Matriz() {
         this.matriz = new ArrayList<>();
         this.matriz.add(new ArrayList<>());
         this.matriz.get(0).add(0.0);
-        this.length = getMatrixSize();
+        this.length = getMatrizSize();
     }
 
     /**
      * Instantiates a matrix with pre determined length
      */
-    public Matrix(int size) {
+    public Matriz(int size) {
         this.matriz = new ArrayList<>();
         this.matriz.add(new ArrayList<>());
         this.matriz.get(0).add(0.0);
-        this.length = getMatrixSize();
+        this.length = getMatrizSize();
         upSize(size - 1);
     }
 
@@ -56,7 +56,7 @@ public class Matrix {
      */
     public int getAdjacenciesCountFrom(int y) {
         int cont = 0;
-        for (int x = 0; x < getMatrixSize(); x++) {
+        for (int x = 0; x < getMatrizSize(); x++) {
             Double value = matriz.get(y).get(x);
             if (value != getValorAdjacencia() && value != 0) {
                 cont++;
@@ -79,7 +79,7 @@ public class Matrix {
      *
      * @return matrix size
      */
-    public int getMatrixSize() {
+    public int getMatrizSize() {
         return matriz.size();
     }
 
@@ -150,8 +150,8 @@ public class Matrix {
      * Resets every adjacency on the matrix
      */
     public void resetAdjacency() {
-        for (int i = 0; i < getMatrixSize(); i++) {
-            for (int j = 0; j < getMatrixSize(); j++) {
+        for (int i = 0; i < getMatrizSize(); i++) {
+            for (int j = 0; j < getMatrizSize(); j++) {
                 if (matriz.get(i).get(j) != 0.0) {
                     matriz.get(i).set(j, valorAdjacencia);
                 }
@@ -184,8 +184,8 @@ public class Matrix {
      */
     private void updateValorAdjacencia(Double newValue) {
         Double oldValue = this.valorAdjacencia;
-        for(int i = 0; i < getMatrixSize(); i++) {
-            for(int j = 0; j < getMatrixSize(); j++) {
+        for(int i = 0; i < getMatrizSize(); i++) {
+            for(int j = 0; j < getMatrizSize(); j++) {
                 if(matriz.get(j).get(i) == oldValue) {
                     matriz.get(j).set(i, newValue);
                 }
@@ -198,8 +198,8 @@ public class Matrix {
      */
     public void print() {
         System.out.printf("length: %d\n", length);
-        String numberTable = "| + | ";
-        for (int i = 0; i < getMatrixSize(); i++) {
+        String numberTable = "|   | ";
+        for (int i = 0; i < getMatrizSize(); i++) {
             numberTable += i + " | ";
         }
         System.out.println(numberTable);

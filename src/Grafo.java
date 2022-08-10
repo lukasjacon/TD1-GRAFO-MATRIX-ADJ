@@ -1,21 +1,21 @@
 
 import java.util.ArrayList;
 
-public class Graph {
+public class Grafo {
 
     private ArrayList<Nodes> nodes;
-    private Matrix matrix;
+    private Matriz matriz;
 
     // Esse é o grafo
-    public Graph() {
+    public Grafo() {
         nodes = new ArrayList<>();
-        matrix = new Matrix();
+        matriz = new Matriz();
     }
 
-    public Graph(int nodeQuantity) {
+    public Grafo(int nodeQuantity) {
         nodeQuantity--;
         nodes = new ArrayList<>();
-        matrix = new Matrix();
+        matriz = new Matriz();
         for(int i = 0; i < nodeQuantity; i++) {
             addNode();
         }
@@ -23,19 +23,19 @@ public class Graph {
 
     public void addNode() {
         nodes.add(new Nodes());
-        matrix.upSize();
+        matriz.upSize();
     }
 
     public void cria_adjacencia(int i, int j, int P) {
-        matrix.setAdjacencyOn(i, j, (double)P);
+        matriz.setAdjacencyOn(i, j, (double)P);
     }
 
     public void remove_adjacencia(int i, int j) {
-        matrix.removeAdjacencyOn(i, j);
+        matriz.removeAdjacencia(i, j);
     }
 
     public void imprime_adjacencias() {
-        matrix.print();
+        matriz.print();
     }
 
     public void seta_informacao(int i, String V) {
@@ -43,7 +43,7 @@ public class Graph {
     }
 
     public int adjacentes(int i/*, adj*/) {
-        return matrix.getAdjacenciesCountFrom(i);
+        return matriz.getAdjacenciesCountFrom(i);
     }
 
 }
