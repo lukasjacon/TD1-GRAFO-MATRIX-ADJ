@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 
+// Esse também é o grafo
 public class Graph {
 
     private ArrayList<Nodes> nodes;
