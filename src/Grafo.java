@@ -3,31 +3,31 @@ import java.util.ArrayList;
 
 public class Grafo {
 
-    private ArrayList<Nodes> nodes;
+    private ArrayList<No> Nos;
     private Matriz matriz;
 
     // Esse é o grafo
     public Grafo() {
-        nodes = new ArrayList<>();
+        Nos = new ArrayList<>();
         matriz = new Matriz();
     }
 
-    public Grafo(int nodeQuantity) {
-        nodeQuantity--;
-        nodes = new ArrayList<>();
+    public Grafo(int quantidadeNos) {
+        quantidadeNos--;
+        Nos = new ArrayList<>();
         matriz = new Matriz();
-        for(int i = 0; i < nodeQuantity; i++) {
-            addNode();
+        for(int i = 0; i < quantidadeNos; i++) {
+            adicionaNo();
         }
     }
 
-    public void addNode() {
-        nodes.add(new Nodes());
+    public void adicionaNo() {
+        Nos.add(new No());
         matriz.upSize();
     }
 
     public void cria_adjacencia(int i, int j, int P) {
-        matriz.setAdjacencyOn(i, j, (double)P);
+        matriz.adjacencia(i, j, (double)P);
     }
 
     public void remove_adjacencia(int i, int j) {
@@ -39,11 +39,11 @@ public class Grafo {
     }
 
     public void seta_informacao(int i, String V) {
-        nodes.get(i).setValue(V);
+        Nos.get(i).setValor(V);
     }
 
     public int adjacentes(int i/*, adj*/) {
-        return matriz.getAdjacenciesCountFrom(i);
+        return matriz.quantidadeAdjacencias(i);
     }
 
 }

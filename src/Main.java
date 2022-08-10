@@ -7,8 +7,8 @@ public class Main {
         grafo.cria_adjacencia(4, 2, 9);
         grafo.imprime_adjacencias();
 
-        System.out.printf("Total adjacencies na linha %d: %d\n", 4,grafo.adjacentes(4));
-        System.out.printf("Total adjacencies na linha %d: %d\n", 2,grafo.adjacentes(2));
+        System.out.printf("Total adjacencias na linha %d: %d\n", 4,grafo.adjacentes(4));
+        System.out.printf("Total adjacencias na linha %d: %d\n", 2,grafo.adjacentes(2));
     }
 
 }

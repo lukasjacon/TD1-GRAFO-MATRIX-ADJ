@@ -14,7 +14,7 @@ public class Matriz {
         this.matriz = new ArrayList<>();
         this.matriz.add(new ArrayList<>());
         this.matriz.get(0).add(0.0);
-        this.length = getMatrizSize();
+        this.length = tamanhoMatriz();
     }
 
     /**
@@ -24,7 +24,7 @@ public class Matriz {
         this.matriz = new ArrayList<>();
         this.matriz.add(new ArrayList<>());
         this.matriz.get(0).add(0.0);
-        this.length = getMatrizSize();
+        this.length = tamanhoMatriz();
         upSize(size - 1);
     }
 
@@ -54,9 +54,9 @@ public class Matriz {
      * @param y The position of the Y axis
      * @return The number of adjacencies
      */
-    public int getAdjacenciesCountFrom(int y) {
+    public int quantidadeAdjacencias(int y) {
         int cont = 0;
-        for (int x = 0; x < getMatrizSize(); x++) {
+        for (int x = 0; x < tamanhoMatriz(); x++) {
             Double value = matriz.get(y).get(x);
             if (value != getValorAdjacencia() && value != 0) {
                 cont++;
@@ -79,7 +79,7 @@ public class Matriz {
      *
      * @return matrix size
      */
-    public int getMatrizSize() {
+    public int tamanhoMatriz() {
         return matriz.size();
     }
 
@@ -111,7 +111,7 @@ public class Matriz {
      * @param y     | Y Axis
      * @param value The value of the adjacency
      */
-    public void setAdjacencyOn(int x, int y, Double value) {
+    public void adjacencia(int x, int y, Double value) {
         if (x != y) {
             matriz.get(y).set(x, value);
             matriz.get(x).set(y, value);
@@ -150,8 +150,8 @@ public class Matriz {
      * Resets every adjacency on the matrix
      */
     public void resetAdjacency() {
-        for (int i = 0; i < getMatrizSize(); i++) {
-            for (int j = 0; j < getMatrizSize(); j++) {
+        for (int i = 0; i < tamanhoMatriz(); i++) {
+            for (int j = 0; j < tamanhoMatriz(); j++) {
                 if (matriz.get(i).get(j) != 0.0) {
                     matriz.get(i).set(j, valorAdjacencia);
                 }
@@ -184,8 +184,8 @@ public class Matriz {
      */
     private void updateValorAdjacencia(Double newValue) {
         Double oldValue = this.valorAdjacencia;
-        for(int i = 0; i < getMatrizSize(); i++) {
-            for(int j = 0; j < getMatrizSize(); j++) {
+        for(int i = 0; i < tamanhoMatriz(); i++) {
+            for(int j = 0; j < tamanhoMatriz(); j++) {
                 if(matriz.get(j).get(i) == oldValue) {
                     matriz.get(j).set(i, newValue);
                 }
@@ -199,7 +199,7 @@ public class Matriz {
     public void print() {
         System.out.printf("length: %d\n", length);
         String numberTable = "|   | ";
-        for (int i = 0; i < getMatrizSize(); i++) {
+        for (int i = 0; i < tamanhoMatriz(); i++) {
             numberTable += i + " | ";
         }
         System.out.println(numberTable);
