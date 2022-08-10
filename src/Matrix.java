@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 public class Matrix {
 
-    private ArrayList<ArrayList<Double>> matrix;
+    private ArrayList<ArrayList<Double>> matriz;
     private int length;
-    private Double noAdjacencyValue = Double.POSITIVE_INFINITY;
+    private Double valorAdjacencia = Double.POSITIVE_INFINITY;
 
     /**
      * Instantiates a matrix with length 1
      */
     public Matrix() {
-        this.matrix = new ArrayList<>();
-        this.matrix.add(new ArrayList<>());
-        this.matrix.get(0).add(0.0);
+        this.matriz = new ArrayList<>();
+        this.matriz.add(new ArrayList<>());
+        this.matriz.get(0).add(0.0);
         this.length = getMatrixSize();
     }
 
@@ -21,9 +21,9 @@ public class Matrix {
      * Instantiates a matrix with pre determined length
      */
     public Matrix(int size) {
-        this.matrix = new ArrayList<>();
-        this.matrix.add(new ArrayList<>());
-        this.matrix.get(0).add(0.0);
+        this.matriz = new ArrayList<>();
+        this.matriz.add(new ArrayList<>());
+        this.matriz.get(0).add(0.0);
         this.length = getMatrixSize();
         upSize(size - 1);
     }
@@ -35,8 +35,8 @@ public class Matrix {
      * @param y | Position of Y Axis on the matrix
      * @return
      */
-    public Double getValueFrom(int x, int y) {
-        return matrix.get(y).get(x);
+    public Double getValores(int x, int y) {
+        return matriz.get(y).get(x);
     }
 
     /**
@@ -44,8 +44,8 @@ public class Matrix {
      *
      * @return the value
      */
-    public Double getNoAdjacencyValue() {
-        return this.noAdjacencyValue;
+    public Double getValorAdjacencia() {
+        return this.valorAdjacencia;
     }
 
     /**
@@ -57,8 +57,8 @@ public class Matrix {
     public int getAdjacenciesCountFrom(int y) {
         int cont = 0;
         for (int x = 0; x < getMatrixSize(); x++) {
-            Double value = matrix.get(y).get(x);
-            if (value != getNoAdjacencyValue() && value != 0) {
+            Double value = matriz.get(y).get(x);
+            if (value != getValorAdjacencia() && value != 0) {
                 cont++;
             }
         }
@@ -71,7 +71,7 @@ public class Matrix {
      * @return value
      */
     public Double getAdjacencyOf(int y, int x) {
-        return matrix.get(y).get(x);
+        return matriz.get(y).get(x);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Matrix {
      * @return matrix size
      */
     public int getMatrixSize() {
-        return matrix.size();
+        return matriz.size();
     }
 
     /**
@@ -88,9 +88,9 @@ public class Matrix {
      *
      * @param value
      */
-    public void setNoAdjacencyValue(Double value) {
-        updateNoAdjacencyValue(value);
-        this.noAdjacencyValue = value;
+    public void setValorAdjacencia(Double value) {
+        updateValorAdjacencia(value);
+        this.valorAdjacencia = value;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Matrix {
      * @param value The value of the adjacency
      */
     public void setOn(int x, int y, Double value) {
-        matrix.get(y).set(x, value);
+        matriz.get(y).set(x, value);
     }
 
     /**
@@ -113,8 +113,8 @@ public class Matrix {
      */
     public void setAdjacencyOn(int x, int y, Double value) {
         if (x != y) {
-            matrix.get(y).set(x, value);
-            matrix.get(x).set(y, value);
+            matriz.get(y).set(x, value);
+            matriz.get(x).set(y, value);
         }
     }
 
@@ -124,15 +124,15 @@ public class Matrix {
     public void upSize() {
         ArrayList<Double> aux = new ArrayList<>();
         for (int i = 0; i < length; i++) {
-            aux.add(noAdjacencyValue);
+            aux.add(valorAdjacencia);
         }
         length++;
-        matrix.add(aux);
+        matriz.add(aux);
 
         for (int i = 0; i < length; i++) {
-            matrix.get(i).add(noAdjacencyValue);
+            matriz.get(i).add(valorAdjacencia);
         }
-        matrix.get(length - 1).set(length - 1, 0.0);
+        matriz.get(length - 1).set(length - 1, 0.0);
     }
 
     /**
@@ -152,8 +152,8 @@ public class Matrix {
     public void resetAdjacency() {
         for (int i = 0; i < getMatrixSize(); i++) {
             for (int j = 0; j < getMatrixSize(); j++) {
-                if (matrix.get(i).get(j) != 0.0) {
-                    matrix.get(i).set(j, noAdjacencyValue);
+                if (matriz.get(i).get(j) != 0.0) {
+                    matriz.get(i).set(j, valorAdjacencia);
                 }
             }
         }
@@ -164,17 +164,17 @@ public class Matrix {
      * @param x | X Axis
      * @param y | Y Axis
      */
-    public void removeAdjacencyOn(int x, int y) {
-        matrix.get(y).set(x, noAdjacencyValue);
+    public void removeAdjacencia(int x, int y) {
+        matriz.get(y).set(x, valorAdjacencia);
     }
 
     /**
      * resets ENTIRE matrix
      */
     public void reset() {
-        this.matrix = new ArrayList<>();
-        this.matrix.add(new ArrayList<>());
-        this.matrix.get(0).add(noAdjacencyValue);
+        this.matriz = new ArrayList<>();
+        this.matriz.add(new ArrayList<>());
+        this.matriz.get(0).add(valorAdjacencia);
         this.length = 0;
     }
 
@@ -182,12 +182,12 @@ public class Matrix {
      * updates the old value of noAdjacencyValue with the new one
      * @param newValue new value of noAdjacencyValue
      */
-    private void updateNoAdjacencyValue(Double newValue) {
-        Double oldValue = this.noAdjacencyValue;
+    private void updateValorAdjacencia(Double newValue) {
+        Double oldValue = this.valorAdjacencia;
         for(int i = 0; i < getMatrixSize(); i++) {
             for(int j = 0; j < getMatrixSize(); j++) {
-                if(matrix.get(j).get(i) == oldValue) {
-                    matrix.get(j).set(i, newValue);
+                if(matriz.get(j).get(i) == oldValue) {
+                    matriz.get(j).set(i, newValue);
                 }
             }
         }
@@ -203,11 +203,11 @@ public class Matrix {
             numberTable += i + " | ";
         }
         System.out.println(numberTable);
-        for (int i = 0; i < matrix.size(); i++) {
+        for (int i = 0; i < matriz.size(); i++) {
             System.out.printf("| %d | ", i);
-            for (int j = 0; j < matrix.get(i).size(); j++) {
-                Double value = matrix.get(i).get(j);
-                if (value == noAdjacencyValue) {
+            for (int j = 0; j < matriz.get(i).size(); j++) {
+                Double value = matriz.get(i).get(j);
+                if (value == valorAdjacencia) {
                     System.out.printf("x | ");
                 } else {
                     System.out.printf("%.0f | ", value);
