@@ -3,10 +3,9 @@ import java.util.ArrayList;
 
 public class Grafo {
 
-    private ArrayList<No> Nos;
-    private Matriz matriz;
+    public ArrayList<No> Nos;
+    public Matriz matriz;
 
-    // Esse é o grafo
     public Grafo() {
         Nos = new ArrayList<>();
         matriz = new Matriz();
@@ -22,7 +21,8 @@ public class Grafo {
     }
 
     public void adicionaNo() {
-        Nos.add(new No());
+        var novoNo = new No("0");
+        Nos.add(novoNo);
         matriz.upSize();
     }
 
@@ -38,12 +38,11 @@ public class Grafo {
         matriz.print();
     }
 
-    public void seta_informacao(int i, String V) {
-        Nos.get(i).setValor(V);
+    public void seta_informacao(int i, String v) {
+        Nos.get(i).valor= v;
     }
 
-    public int adjacentes(int i/*, adj*/) {
+    public int adjacentes(int i) {
         return matriz.quantidadeAdjacencias(i);
     }
-
 }

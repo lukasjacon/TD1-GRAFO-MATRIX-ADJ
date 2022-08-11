@@ -3,60 +3,39 @@ import java.util.ArrayList;
 
 public class Matriz {
 
-    private ArrayList<ArrayList<Double>> matriz;
-    private int length;
-    private Double valorAdjacencia = Double.POSITIVE_INFINITY;
+    public ArrayList<ArrayList<Double>> matriz;
+    public int length;
+    public Double valorAdjacencia = Double.POSITIVE_INFINITY;
 
-    /**
-     * Instantiates a matrix with length 1
-     */
+    
+    //Construtor sem parametro
     public Matriz() {
-        this.matriz = new ArrayList<>();
-        this.matriz.add(new ArrayList<>());
-        this.matriz.get(0).add(0.0);
-        this.length = tamanhoMatriz();
+        matriz = new ArrayList<>();
+        matriz.add(new ArrayList<>());
+        matriz.get(0).add(0.0);
+        length = matriz.size();
     }
 
-    /**
-     * Instantiates a matrix with pre determined length
-     */
+    
+    //Construtor com parametro size
     public Matriz(int size) {
-        this.matriz = new ArrayList<>();
-        this.matriz.add(new ArrayList<>());
-        this.matriz.get(0).add(0.0);
-        this.length = tamanhoMatriz();
+        matriz = new ArrayList<>();
+        matriz.add(new ArrayList<>());
+        matriz.get(0).add(0.0);
+        length = matriz.size();
         upSize(size - 1);
     }
 
-    /**
-     * Gets value from position (X, Y)
-     *
-     * @param x | Position of X Axis on the matrix
-     * @param y | Position of Y Axis on the matrix
-     * @return
-     */
-    public Double getValores(int x, int y) {
-        return matriz.get(y).get(x);
-    }
-
-    /**
-     * Gets the value that represents that there is no adjacency
-     *
-     * @return the value
-     */
+    // Valor da adjacencia
     public Double getValorAdjacencia() {
-        return this.valorAdjacencia;
+
+        return valorAdjacencia;
     }
 
-    /**
-     * Gets all adjacencies from y axis
-     *
-     * @param y The position of the Y axis
-     * @return The number of adjacencies
-     */
+    // Quantidade de adjacencia
     public int quantidadeAdjacencias(int y) {
         int cont = 0;
-        for (int x = 0; x < tamanhoMatriz(); x++) {
+        for (int x = 0; x < matriz.size(); x++) {
             Double value = matriz.get(y).get(x);
             if (value != getValorAdjacencia() && value != 0) {
                 cont++;
@@ -65,52 +44,24 @@ public class Matriz {
         return cont;
     }
 
-    /**
-     * Gets adjacency value from specified position
-     *
-     * @return value
-     */
+    //Indice no vetor da adjacencia
     public Double getAdjacencyOf(int y, int x) {
+
         return matriz.get(y).get(x);
     }
 
-    /**
-     * Gets matrix size
-     *
-     * @return matrix size
-     */
-    public int tamanhoMatriz() {
-        return matriz.size();
-    }
-
-    /**
-     * Sets the value that represents no adjacency in the matrix
-     *
-     * @param value
-     */
+    //Valor da adjacencia
     public void setValorAdjacencia(Double value) {
         updateValorAdjacencia(value);
         this.valorAdjacencia = value;
     }
 
-    /**
-     * Sets a specified value on a specified (X, Y) coordinate
-     *
-     * @param x     | X Axis
-     * @param y     | Y Axis
-     * @param value The value of the adjacency
-     */
+    //Adiciona um valor numa posição x y
     public void setOn(int x, int y, Double value) {
         matriz.get(y).set(x, value);
     }
 
-    /**
-     * Set adjacency between the coordinates
-     *
-     * @param x     | X Axis
-     * @param y     | Y Axis
-     * @param value The value of the adjacency
-     */
+    //Adjacencia
     public void adjacencia(int x, int y, Double value) {
         if (x != y) {
             matriz.get(y).set(x, value);
@@ -118,10 +69,9 @@ public class Matriz {
         }
     }
 
-    /**
-     * Increments the size of the matrix by one
-     */
+
     public void upSize() {
+
         ArrayList<Double> aux = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             aux.add(valorAdjacencia);
@@ -135,23 +85,17 @@ public class Matriz {
         matriz.get(length - 1).set(length - 1, 0.0);
     }
 
-    /**
-     * Increments the size of the matrix by a specified value
-     *
-     * @param length Total of times the matrix will be incremented
-     */
+    
     public void upSize(int length) {
         for (int i = 0; i < length; i++) {
             upSize();
         }
     }
 
-    /**
-     * Resets every adjacency on the matrix
-     */
+    //Reseta a adjacencia
     public void resetAdjacency() {
-        for (int i = 0; i < tamanhoMatriz(); i++) {
-            for (int j = 0; j < tamanhoMatriz(); j++) {
+        for (int i = 0; i < matriz.size(); i++) {
+            for (int j = 0; j < matriz.size(); j++) {
                 if (matriz.get(i).get(j) != 0.0) {
                     matriz.get(i).set(j, valorAdjacencia);
                 }
@@ -159,33 +103,24 @@ public class Matriz {
         }
     }
 
-    /**
-     * removes adjacency from specified coordinates
-     * @param x | X Axis
-     * @param y | Y Axis
-     */
+    //Remove adjacencia numa posição x y
     public void removeAdjacencia(int x, int y) {
         matriz.get(y).set(x, valorAdjacencia);
     }
 
-    /**
-     * resets ENTIRE matrix
-     */
+    //Reseta a matriz
     public void reset() {
-        this.matriz = new ArrayList<>();
-        this.matriz.add(new ArrayList<>());
-        this.matriz.get(0).add(valorAdjacencia);
-        this.length = 0;
+        matriz = new ArrayList<>();
+        matriz.add(new ArrayList<>());
+        matriz.get(0).add(valorAdjacencia);
+        length = 0;
     }
 
-    /**
-     * updates the old value of noAdjacencyValue with the new one
-     * @param newValue new value of noAdjacencyValue
-     */
-    private void updateValorAdjacencia(Double newValue) {
+
+    public void updateValorAdjacencia(Double newValue) {
         Double oldValue = this.valorAdjacencia;
-        for(int i = 0; i < tamanhoMatriz(); i++) {
-            for(int j = 0; j < tamanhoMatriz(); j++) {
+        for(int i = 0; i < matriz.size(); i++) {
+            for(int j = 0; j < matriz.size(); j++) {
                 if(matriz.get(j).get(i) == oldValue) {
                     matriz.get(j).set(i, newValue);
                 }
@@ -193,13 +128,14 @@ public class Matriz {
         }
     }
 
-    /**
-     * prints matrix
-     */
+    //Imprime a matriz
     public void print() {
-        System.out.printf("length: %d\n", length);
+        //System.out.printf("length: %d\n", length);
+        System.out.println("----MATRIZ ADJACENCIA----");
+        System.out.println("       Tamanho: " + length + "\n");
+        System.out.println("+++++++++++++++++++++++++");
         String numberTable = "|   | ";
-        for (int i = 0; i < tamanhoMatriz(); i++) {
+        for (int i = 0; i < matriz.size(); i++) {
             numberTable += i + " | ";
         }
         System.out.println(numberTable);
@@ -215,6 +151,7 @@ public class Matriz {
             }
             System.out.println();
         }
+        System.out.println("+++++++++++++++++++++++++\n");
     }
 
 }
